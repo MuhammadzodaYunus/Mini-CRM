@@ -1,0 +1,1314 @@
+/* =========================================================
+   FINAL MANAGEMENT UI
+   Shared visual system for profile, courses, groups,
+   timetables, mentors and mentor assignments.
+   ========================================================= */
+
+.management-page {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  display: grid;
+  gap: 20px;
+}
+
+.management-page::before {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  width: 520px;
+  height: 520px;
+  top: 80px;
+  right: -240px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.34;
+  background: radial-gradient(
+    circle,
+    rgba(24, 170, 245, 0.16),
+    transparent 68%
+  );
+  filter: blur(6px);
+}
+
+.management-page::after {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  width: 420px;
+  height: 420px;
+  left: 8%;
+  bottom: -240px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.3;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.14),
+    transparent 70%
+  );
+}
+
+/* =========================================================
+   SPOTLIGHT HERO
+   ========================================================= */
+
+.management-spotlight {
+  position: relative;
+  min-height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  overflow: hidden;
+  padding: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  color: #ffffff;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+.management-spotlight::before {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  top: -270px;
+  right: -90px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 56px rgba(255, 255, 255, 0.025),
+    0 0 0 112px rgba(255, 255, 255, 0.016),
+    0 0 0 168px rgba(255, 255, 255, 0.01);
+}
+
+.management-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.16) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.16) 1px,
+      transparent 1px
+    );
+  background-size: 42px 42px;
+  mask-image: linear-gradient(90deg, #000, transparent 82%);
+}
+
+.management-spotlight > * {
+  position: relative;
+  z-index: 1;
+}
+
+.management-spotlight-blue {
+  background:
+    radial-gradient(
+      circle at 86% 14%,
+      rgba(86, 216, 255, 0.28),
+      transparent 31%
+    ),
+    linear-gradient(135deg, #103d62, #112943 56%, #101a2a);
+}
+
+.management-spotlight-green {
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(70, 226, 177, 0.25),
+      transparent 31%
+    ),
+    linear-gradient(135deg, #0d4a4c, #123745 54%, #101b2a);
+}
+
+.management-spotlight-purple {
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(164, 125, 255, 0.28),
+      transparent 31%
+    ),
+    linear-gradient(135deg, #33205e, #222747 55%, #111a2b);
+}
+
+.management-spotlight-orange {
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(255, 177, 73, 0.28),
+      transparent 31%
+    ),
+    linear-gradient(135deg, #5a3217, #392b2a 55%, #111a27);
+}
+
+.management-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: rgba(214, 242, 255, 0.78);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.19em;
+}
+
+.management-eyebrow::before {
+  content: "";
+  width: 31px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.management-spotlight h2 {
+  max-width: 760px;
+  margin: 17px 0 12px;
+  color: #ffffff;
+  font-size: clamp(30px, 4vw, 50px);
+  line-height: 1.08;
+  letter-spacing: -0.052em;
+}
+
+.management-spotlight p {
+  max-width: 720px;
+  margin: 0;
+  color: rgba(235, 247, 255, 0.7);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.management-spotlight-metric {
+  min-width: 190px;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.075);
+  backdrop-filter: blur(14px);
+}
+
+.management-spotlight-metric strong {
+  color: #ffffff;
+  font-size: 46px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.management-spotlight-metric span {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   SHARED CARDS AND CONTAINERS
+   ========================================================= */
+
+.management-resource-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.management-resource-card::before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  top: -110px;
+  right: -110px;
+  border: 1px solid var(--border-soft);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.management-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.management-section::after {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  right: -88px;
+  bottom: -88px;
+  border: 1px solid var(--border-soft);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.management-info-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 170ms ease,
+    border-color 170ms ease,
+    box-shadow 170ms ease;
+}
+
+.management-info-card::before {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  right: -42px;
+  top: -42px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+}
+
+.management-info-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(24, 170, 245, 0.35);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================================
+   BUTTONS AND ACTIONS
+   ========================================================= */
+
+.management-action-stack {
+  min-width: 190px;
+}
+
+.management-primary-button,
+.management-view-button,
+.management-edit-button,
+.management-delete-button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 850;
+  white-space: nowrap;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.management-primary-button {
+  width: 100%;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  box-shadow: 0 13px 27px rgba(24, 170, 245, 0.22);
+}
+
+.management-primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 17px 32px rgba(24, 170, 245, 0.3);
+}
+
+.management-view-button {
+  padding: 0 12px;
+  border: 1px solid var(--border-primary);
+  color: var(--accent-primary);
+  background: var(--surface-1);
+}
+
+.management-view-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.management-edit-button {
+  padding: 0 12px;
+  border: 1px solid rgba(99, 102, 241, 0.24);
+  color: #8b86ff;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.management-edit-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.52);
+  background: rgba(99, 102, 241, 0.16);
+}
+
+.management-delete-button {
+  min-width: 38px;
+  padding: 0 11px;
+  border: 1px solid rgba(240, 82, 82, 0.23);
+  color: var(--danger);
+  background: rgba(240, 82, 82, 0.09);
+}
+
+.management-delete-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: rgba(240, 82, 82, 0.5);
+  background: rgba(240, 82, 82, 0.15);
+}
+
+.management-delete-button:disabled,
+.management-edit-button:disabled,
+.management-view-button:disabled,
+.management-primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+.management-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 17px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.management-card-actions .management-view-button {
+  margin-right: auto;
+}
+
+.resource-row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+/* =========================================================
+   COURSE CARDS
+   ========================================================= */
+
+.management-course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+  padding: 22px;
+}
+
+.management-course-card {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 21px;
+  border: 1px solid var(--border-primary);
+  border-radius: 18px;
+  cursor: pointer;
+  color: var(--text-primary);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(24, 170, 245, 0.1),
+      transparent 36%
+    ),
+    linear-gradient(145deg, var(--surface-2), var(--surface-1));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.management-course-card::after {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  right: -90px;
+  bottom: -90px;
+  border: 1px solid rgba(24, 170, 245, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.management-course-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(24, 170, 245, 0.4);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.14);
+}
+
+.management-course-card:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+.management-course-card > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 13px;
+}
+
+.management-course-icon {
+  width: 47px;
+  height: 47px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+  font-size: 20px;
+  box-shadow: inset 0 0 0 1px rgba(24, 170, 245, 0.1);
+}
+
+.management-id-label {
+  color: var(--text-muted);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+}
+
+.management-course-card h3 {
+  margin: 23px 0 10px;
+  color: var(--text-primary);
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.management-course-card > p {
+  min-height: 70px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+.management-course-stats {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.management-course-stats > div {
+  padding: 13px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--surface-1);
+}
+
+.management-course-stats span,
+.management-course-stats strong {
+  display: block;
+}
+
+.management-course-stats span {
+  color: var(--text-muted);
+  font-size: 8px;
+}
+
+.management-course-stats strong {
+  margin-top: 7px;
+  color: var(--text-primary);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   GROUP TABLE DETAILS
+   ========================================================= */
+
+.management-date-range {
+  display: grid;
+  gap: 3px;
+}
+
+.management-date-range span {
+  color: var(--text-primary);
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.management-date-range small {
+  color: var(--text-muted);
+  font-size: 8px;
+}
+
+.management-member-counts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.management-member-counts span {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--surface-2);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.resource-clickable-row {
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.resource-clickable-row:hover {
+  background: var(--surface-2);
+  box-shadow: inset 3px 0 0 var(--accent-primary);
+}
+
+/* =========================================================
+   SCHEDULE CARDS
+   ========================================================= */
+
+.management-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 22px;
+}
+
+.management-schedule-card {
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid var(--border-primary);
+  border-radius: 18px;
+  color: var(--text-primary);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(139, 92, 246, 0.1),
+      transparent 37%
+    ),
+    linear-gradient(145deg, var(--surface-2), var(--surface-1));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.management-schedule-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(139, 92, 246, 0.38);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.management-schedule-card > header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.management-schedule-card h3 {
+  margin: 8px 0 0;
+  color: var(--text-primary);
+  font-size: 19px;
+}
+
+.management-schedule-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 31px 0 25px;
+}
+
+.management-schedule-time strong {
+  color: var(--text-primary);
+  font-size: 27px;
+  letter-spacing: -0.045em;
+}
+
+.management-schedule-time span {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.management-schedule-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid var(--border-soft);
+  border-radius: 13px;
+  background: var(--surface-1);
+}
+
+.management-schedule-group > span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 11px;
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.management-schedule-group strong,
+.management-schedule-group small {
+  display: block;
+}
+
+.management-schedule-group strong {
+  color: var(--text-primary);
+  font-size: 10px;
+}
+
+.management-schedule-group small {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 8px;
+}
+
+/* =========================================================
+   MENTOR CARDS
+   ========================================================= */
+
+.management-mentor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+  padding: 22px;
+}
+
+.management-mentor-card {
+  min-height: 390px;
+  display: flex;
+  flex-direction: column;
+  padding: 21px;
+  border: 1px solid var(--border-primary);
+  border-radius: 18px;
+  cursor: pointer;
+  color: var(--text-primary);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(139, 92, 246, 0.11),
+      transparent 36%
+    ),
+    linear-gradient(145deg, var(--surface-2), var(--surface-1));
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.management-mentor-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.14);
+}
+
+.management-mentor-card > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.management-person-avatar {
+  width: 53px;
+  height: 53px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #4f46e5);
+  box-shadow: 0 13px 26px rgba(99, 102, 241, 0.25);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.management-level-badge {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--border-primary);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--surface-1);
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.management-level-junior {
+  border-color: rgba(24, 170, 245, 0.23);
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+}
+
+.management-level-middle {
+  border-color: rgba(139, 92, 246, 0.23);
+  color: #9b7bff;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.management-level-senior {
+  border-color: rgba(245, 158, 11, 0.24);
+  color: var(--warning);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.management-mentor-card > .management-id-label {
+  display: block;
+  margin-top: 19px;
+}
+
+.management-mentor-card h3 {
+  margin: 9px 0 5px;
+  color: var(--text-primary);
+  font-size: 18px;
+}
+
+.management-mentor-card > p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.management-person-info {
+  display: grid;
+  gap: 9px;
+  margin: 21px 0;
+}
+
+.management-person-info > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 13px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.management-person-info > div:last-child {
+  border-bottom: 0;
+}
+
+.management-person-info span {
+  color: var(--text-muted);
+  font-size: 8px;
+}
+
+.management-person-info strong {
+  max-width: 65%;
+  color: var(--text-primary);
+  font-size: 9px;
+  line-height: 1.45;
+  text-align: right;
+  word-break: break-word;
+}
+
+/* =========================================================
+   PROFILE EDITING
+   ========================================================= */
+
+.management-profile-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.management-profile-hero::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  top: -180px;
+  right: -80px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 42px rgba(255, 255, 255, 0.018),
+    0 0 0 84px rgba(255, 255, 255, 0.012);
+  pointer-events: none;
+}
+
+.management-profile-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   FORM ENHANCEMENTS
+   ========================================================= */
+
+.management-form-grid {
+  gap: 17px;
+}
+
+.management-form-grid .resource-field {
+  position: relative;
+}
+
+.management-form-grid .resource-field > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-secondary);
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.management-form-grid .resource-field > span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.management-form-grid input,
+.management-form-grid select,
+.management-form-grid textarea {
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.management-form-grid input:focus,
+.management-form-grid select:focus,
+.management-form-grid textarea:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.management-form-grid textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.management-form-grid input[type="date"],
+.management-form-grid input[type="time"] {
+  min-height: 46px;
+}
+
+.management-form-grid select {
+  cursor: pointer;
+}
+
+/* =========================================================
+   TABLE POLISH
+   ========================================================= */
+
+.management-resource-card .resource-table {
+  min-width: 860px;
+}
+
+.management-resource-card .resource-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+}
+
+.management-resource-card .resource-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.management-resource-card .resource-table td {
+  vertical-align: middle;
+}
+
+.management-resource-card .resource-table-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-primary) transparent;
+}
+
+.management-resource-card .resource-table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.management-resource-card .resource-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.management-resource-card .resource-table-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--border-primary);
+}
+
+/* =========================================================
+   SMALL VISUAL HELPERS
+   ========================================================= */
+
+.management-soft-panel {
+  padding: 16px;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: var(--surface-2);
+}
+
+.management-divider {
+  height: 1px;
+  margin: 18px 0;
+  border: 0;
+  background: var(--border-soft);
+}
+
+.management-inline-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.management-inline-meta span {
+  min-height: 27px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 9px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--surface-2);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.management-muted {
+  color: var(--text-muted);
+}
+
+.management-accent {
+  color: var(--accent-primary);
+}
+
+.management-success {
+  color: var(--success);
+}
+
+.management-warning {
+  color: var(--warning);
+}
+
+.management-danger {
+  color: var(--danger);
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme="light"] .management-spotlight {
+  box-shadow: 0 24px 55px rgba(30, 65, 105, 0.17);
+}
+
+[data-theme="light"] .management-course-card,
+[data-theme="light"] .management-schedule-card,
+[data-theme="light"] .management-mentor-card {
+  box-shadow: 0 15px 36px rgba(40, 70, 105, 0.07);
+}
+
+[data-theme="light"] .management-course-card:hover,
+[data-theme="light"] .management-schedule-card:hover,
+[data-theme="light"] .management-mentor-card:hover {
+  box-shadow: 0 22px 44px rgba(40, 70, 105, 0.14);
+}
+
+[data-theme="light"] .management-primary-button {
+  box-shadow: 0 13px 26px rgba(8, 127, 201, 0.2);
+}
+
+[data-theme="light"] .management-edit-button {
+  color: #5b55d9;
+}
+
+/* =========================================================
+   MOTION
+   ========================================================= */
+
+@keyframes managementFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes managementPulse {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.management-spotlight,
+.management-resource-card,
+.management-course-card,
+.management-schedule-card,
+.management-mentor-card {
+  animation: managementFadeUp 260ms ease both;
+}
+
+.management-course-card:nth-child(2),
+.management-schedule-card:nth-child(2),
+.management-mentor-card:nth-child(2) {
+  animation-delay: 30ms;
+}
+
+.management-course-card:nth-child(3),
+.management-schedule-card:nth-child(3),
+.management-mentor-card:nth-child(3) {
+  animation-delay: 60ms;
+}
+
+.management-course-card:nth-child(4),
+.management-schedule-card:nth-child(4),
+.management-mentor-card:nth-child(4) {
+  animation-delay: 90ms;
+}
+
+/* =========================================================
+   RESPONSIVE: LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1240px) {
+  .management-course-grid,
+  .management-schedule-grid,
+  .management-mentor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .management-spotlight {
+    min-height: 215px;
+  }
+
+  .management-spotlight h2 {
+    font-size: clamp(29px, 4vw, 44px);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .management-spotlight {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .management-spotlight-metric {
+    width: 100%;
+    min-height: 120px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .management-spotlight-metric strong {
+    font-size: 39px;
+  }
+
+  .management-action-stack {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .management-course-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-row-actions {
+    justify-content: flex-start;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: MOBILE LANDSCAPE
+   ========================================================= */
+
+@media (max-width: 720px) {
+  .management-course-grid,
+  .management-schedule-grid,
+  .management-mentor-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .management-spotlight {
+    padding: 28px 23px;
+    border-radius: 20px;
+  }
+
+  .management-spotlight h2 {
+    font-size: 32px;
+  }
+
+  .management-card-actions {
+    flex-wrap: wrap;
+  }
+
+  .management-card-actions .management-view-button {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .management-edit-button {
+    flex: 1;
+  }
+
+  .management-resource-card .resource-toolbar {
+    align-items: stretch;
+  }
+
+  .management-resource-card .resource-toolbar-actions {
+    width: 100%;
+  }
+
+  .management-resource-card .resource-toolbar-actions > * {
+    flex: 1;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE: MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .management-page {
+    gap: 15px;
+  }
+
+  .management-spotlight {
+    min-height: 0;
+    padding: 25px 20px;
+  }
+
+  .management-spotlight h2 {
+    font-size: 28px;
+  }
+
+  .management-spotlight p {
+    font-size: 10px;
+  }
+
+  .management-spotlight-metric {
+    padding: 18px;
+  }
+
+  .management-course-grid,
+  .management-schedule-grid,
+  .management-mentor-grid {
+    padding: 12px;
+  }
+
+  .management-course-card,
+  .management-schedule-card,
+  .management-mentor-card {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .management-course-card {
+    min-height: 320px;
+  }
+
+  .management-schedule-time strong {
+    font-size: 23px;
+  }
+
+  .management-card-actions {
+    gap: 6px;
+  }
+
+  .management-edit-button,
+  .management-delete-button,
+  .management-view-button {
+    min-height: 36px;
+  }
+
+  .management-form-grid {
+    gap: 13px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY AND REDUCED MOTION
+   ========================================================= */
+
+.management-primary-button:focus-visible,
+.management-view-button:focus-visible,
+.management-edit-button:focus-visible,
+.management-delete-button:focus-visible,
+.management-course-card:focus-visible,
+.management-mentor-card:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .management-spotlight,
+  .management-resource-card,
+  .management-course-card,
+  .management-schedule-card,
+  .management-mentor-card,
+  .management-primary-button,
+  .management-view-button,
+  .management-edit-button,
+  .management-delete-button,
+  .management-info-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+  .management-page::before,
+  .management-page::after,
+  .management-spotlight::before,
+  .management-spotlight::after,
+  .management-primary-button,
+  .management-edit-button,
+  .management-delete-button,
+  .management-view-button,
+  .resource-toolbar-actions {
+    display: none !important;
+  }
+
+  .management-spotlight,
+  .management-course-card,
+  .management-schedule-card,
+  .management-mentor-card,
+  .management-resource-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+}

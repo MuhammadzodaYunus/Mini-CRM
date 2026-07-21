@@ -1,0 +1,67 @@
+from django.urls import path
+
+from .views import (
+    CourseListCreateView,
+    CourseDetailView,
+    GroupListCreateView,
+    GroupDetailView,
+    TimeTableListCreateView,
+    TimeTableDetailView,
+    StudentEnrollListCreateView,
+    StudentEnrollDetailView,
+    MentorEnrollListCreateView,
+    MentorEnrollDetailView,
+)
+
+urlpatterns = [
+    path(
+        "courses/",
+        CourseListCreateView.as_view(),
+        name="course-list-create",
+    ),
+    path(
+        "courses/<int:pk>/",
+        CourseDetailView.as_view(),
+        name="course-detail",
+    ),
+    path(
+        "groups/",
+        GroupListCreateView.as_view(),
+        name="group-list-create",
+    ),
+    path(
+        "groups/<int:pk>/",
+        GroupDetailView.as_view(),
+        name="group-detail",
+    ),
+    path(
+        "timetables/",
+        TimeTableListCreateView.as_view(),
+        name="timetable-list-create",
+    ),
+    path(
+        "timetables/<int:pk>/",
+        TimeTableDetailView.as_view(),
+        name="timetable-detail",
+    ),
+    path(
+        "student-enrollments/",
+        StudentEnrollListCreateView.as_view(),
+        name="student-enrollment-list-create",
+    ),
+    path(
+        "student-enrollments/<int:pk>/",
+        StudentEnrollDetailView.as_view(),
+        name="student-enrollment-detail",
+    ),
+    path(
+        "mentor-enrollments/",
+        MentorEnrollListCreateView.as_view(),
+        name="mentor-enrollment-list-create",
+    ),
+    path(
+        "mentor-enrollments/<int:pk>/",
+        MentorEnrollDetailView.as_view(),
+        name="mentor-enrollment-detail",
+    ),
+]

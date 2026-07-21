@@ -1,0 +1,32 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+
+# Environment variables
+.env
+.env.*
+
+# Django
+staticfiles/
+media/
+
+# Node.js
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Backups
+src_backup/
+*.zip
